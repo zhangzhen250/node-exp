@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+</head>
+<body>
+  <section id="app">
+      <h5>立即注册</h5>
+      <ul>
+          <li><span>用户名:</span><input type="text" v-model="params.name" placeholder="请输入用户名"></li>
+          <li><span>电子邮箱:</span><input type="email" v-model="params.email" placeholder="电子邮箱"></li>
+          <li><span>电话:</span><input type="telphone" v-model="params.telphone" placeholder="请填入手机号"></li>
+          <li><span>密码:</span><input type="password" v-model="params.password" placeholder="密码"></li>
+          <li><button @click="onSignin">立即注册</button></li>
+      </ul>
+  </section>
+</body>
+<script src="/javascripts/vue.js"></script>
+<script src="/javascripts/axios.js"> </script>
+<script>
+    new Vue({
+       el:"#app",
+      data(){
+         return {
+           params:{
+             name:"",
+             email:"",
+             telphone:"",
+             password:""
+           }
+         }
+      },
+      mounted(){},
+      methods:{
+         onSignin(){
+           axios.post("/users/signin",this.params).then(res=>{
+             console.log(res)
+           })
+         }
+      }
+    })
+</script>
+</html>
