@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录</title>
+</head>
+<body>
+    <section id="app">
+        <div><span>用户名:</span><input type="text" v-model="params.userinfor" placeholder="用户名/邮箱/手机号"></div>
+        <div><span>密码:</span><input type="password" v-model="params.password" placeholder="请输入密码"></div>
+        <button @click="onLogin">立即登录</button>
+    </section>
+</body>
+<script src="/javascripts/vue.js"></script>
+<script src="/javascripts/axios.js"> </script>
+<script>
+    new Vue({
+        el:"#app",
+        data(){
+            return {
+                params:{
+                    userinfor:"",
+                    password:""
+                }
+            }
+        },
+        mounted(){},
+        methods:{
+            onLogin(){
+                axios.post("/users/login",this.params).then(res=>{
+                    console.log(res)
+                })
+            }
+        }
+    })
+</script>
+</html>

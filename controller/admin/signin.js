@@ -1,5 +1,6 @@
 const sqlCreate = require("../../model/admin/signin")
 const verificat = require("../../middleware/admin-verification/admin")
+const pwMD5 = require("../../middleware/password-MD5/PwSecret")
 exports.signin = (req, res, next) => {
 
 
@@ -12,5 +13,14 @@ exports.signin = (req, res, next) => {
         data:emailmsg
       })
     }
+  })
+}
+
+exports.login = (req,res,next)=>{
+  let md5pw = pwMD5.pwsecret(req.body.password)
+  console.log(md5pw);+-
+  res.json({
+    code:200,
+    message:"收到了"
   })
 }
